@@ -72,7 +72,7 @@ public class PajekNetwork
 		
 		String v1Label = t.getSubject().getValue().replace('\n', ' ');
 		String arcLabel = t.getPredicate().getValue().replace('\n', ' ');
-		String v2Label = t.getObject().getValue().replace('\n', ' ');
+		String v2Label = t.getObject().getValue().replace('\n', ' ').replace('\"', '\'');
 		if (!inferred)
 			addArc(v1Label, arcLabel, v2Label, EXPLICIT);
 		else
@@ -124,7 +124,7 @@ public class PajekNetwork
 		
 		for(Enumeration<String> e = network.keys(); e.hasMoreElements();)
 		{
-			String label = e.nextElement().replace('"', '\'');
+			String label = e.nextElement();
 			int ID = network.get(label).vertexID;
 			printer.print(ID+" \""+label+"\""+"\r\n");
 		}
